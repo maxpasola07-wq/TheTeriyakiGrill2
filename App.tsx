@@ -1,0 +1,303 @@
+import React, { useMemo, useState } from "react";
+import { Menu, X, ChevronDown, ChevronUp, MapPin, Phone, Clock } from "lucide-react";
+
+const comboList = [
+  [1, "Chicken Teriyaki", "$10.15"],
+  [2, "Chicken Beef Teriyaki", "$13.15"],
+  [3, "Chicken Shrimp Teriyaki", "$13.10"],
+  [4, "Chicken Beef Shrimp Teriyaki", "$16.25"],
+  [5, "Beef Teriyaki", "$11.15"],
+  [6, "Beef Shrimp Teriyaki", "$13.55"],
+  [7, "Shrimp Teriyaki", "$11.55"],
+  [8, "Tilapia Teriyaki", "$11.25"],
+  [9, "Salmon Teriyaki", "$13.25"],
+  [10, "Scallops Teriyaki", "$14.25"],
+  [11, "Scallops and Shrimp Teriyaki", "$18.20"],
+  [12, "Scallops and Chicken Teriyaki", "$17.20"],
+  [13, "Chicken, Shrimp and Scallops Teriyaki", "$20.25"],
+  [14, "Chicken, Beef, Shrimp and Scallops Teriyaki", "$24.05"],
+];
+
+const vegetarianMeals = [
+  ["Vegetarian Noodles", "$6.59"],
+  ["Vegetarian Rice", "$5.99"],
+];
+
+const vegetarianNotes = [
+  ["Replace Rice for Noodles", "$1.29"],
+  ["Extra Rice", "$1.29"],
+  ["Extra Vegetables", "$1.54"],
+];
+
+const sideList = [
+  ["White Rice", "$2.75"],
+  ["Fried Rice", "$3.75"],
+  ["Spring Roll (1)", "$1.99"],
+  ["Dumplings", "$5.00"],
+  ["White Sauce", "$0.80"],
+  ["Side of Noodles", "$4.25"],
+  ["Side of Vegetables", "$4.00"],
+  ["Shrimp Tempura", "$4.95"],
+  ["Chicken Egg Roll", "$2.99"],
+  ["Shrimp Egg Roll", "$3.99"],
+  ["Cheesesteak Egg Roll", "$3.99"],
+];
+
+const beverageList = [
+  ["Bottled Drink", "$2.85"],
+  ["Canned Drink", "$2.35"],
+  ["Fountain Drink", "$2.85"],
+  ["Energy Drink", "$4.25"],
+  ["Bottled Water", "$1.65"],
+  ["Glass Drink", "$3.39"],
+];
+
+function MenuSearch({
+  query,
+  setQuery,
+}: {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}) {
+  return (
+    <div className="rounded-2xl border border-red-100 bg-white p-4 shadow-sm">
+      <div className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Search Menu</div>
+      <input
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search entrees, vegetarian, sides, drinks..."
+        className="mt-3 w-full rounded-xl border border-stone-300 px-4 py-3 outline-none focus:border-red-500"
+      />
+    </div>
+  );
+}
+
+function MenuSection({ title, items, numbered = false }: any) {
+  return (
+    <section className="rounded-[24px] border border-red-100 bg-white p-6 shadow-sm">
+      <h3 className="text-2xl font-black uppercase text-stone-900">{title}</h3>
+      <div className="mt-5 grid gap-3">
+        {items.map((item: any) => (
+          <div
+            key={`${title}-${item[0]}`}
+            className="flex items-center justify-between gap-4 rounded-2xl border border-stone-100 bg-[#fffdfa] px-4 py-4"
+          >
+            <div className="min-w-0">
+              <div className="font-semibold text-stone-900">{numbered ? item[1] : item[0]}</div>
+              {numbered && (
+                <div className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-stone-500">#{item[0]}</div>
+              )}
+            </div>
+            <div className="shrink-0 rounded-full bg-red-600 px-3 py-1 text-sm font-bold text-white">
+              {numbered ? item[2] : item[1]}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function TeriyakiPlateWebsite() {
+  const [query, setQuery] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
+  const [hoursOpen, setHoursOpen] = useState(false);
+
+  const filterPlain = (items: any[]) => {
+    if (!query.trim()) return items;
+    return items.filter((item) => `${item[0]} ${item[1]}`.toLowerCase().includes(query.toLowerCase()));
+  };
+
+  const filteredCombos = useMemo(() => {
+    if (!query.trim()) return comboList;
+    return comboList.filter((item) => `${item[0]} ${item[1]} ${item[2]}`.toLowerCase().includes(query.toLowerCase()));
+  }, [query]);
+
+  const filteredVegetarianMeals = useMemo(() => filterPlain(vegetarianMeals), [query]);
+  const filteredVegetarianNotes = useMemo(() => filterPlain(vegetarianNotes), [query]);
+  const filteredSides = useMemo(() => filterPlain(sideList), [query]);
+  const filteredBeverages = useMemo(() => filterPlain(beverageList), [query]);
+
+  return (
+    <div className="min-h-screen bg-[#fffaf6] text-stone-900">
+      <div className="flex min-h-screen">
+        <aside className={`fixed left-0 top-0 z-40 h-full w-[290px] border-r border-red-950/10 bg-black text-white transition-transform duration-300 md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-5 md:justify-center">
+            <div>
+              <div className="text-2xl font-black uppercase tracking-[0.08em]">The Teriyaki Plate</div>
+              <div className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-red-300">Express Grilled Cuisine</div>
+            </div>
+            <button className="md:hidden" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="px-4 py-5">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left text-base font-bold hover:bg-white/10"
+            >
+              <span>Menu</span>
+              {menuOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+            </button>
+            {menuOpen && (
+              <div className="mt-2 space-y-2 pl-4 text-sm text-white/80">
+                <a href="#entrees" className="block rounded-xl px-3 py-2 hover:bg-white/10">Entrees</a>
+                <a href="#vegetarian" className="block rounded-xl px-3 py-2 hover:bg-white/10">Vegetarian Meals</a>
+                <a href="#sides" className="block rounded-xl px-3 py-2 hover:bg-white/10">Sides & Extras</a>
+                <a href="#beverages" className="block rounded-xl px-3 py-2 hover:bg-white/10">Beverages</a>
+              </div>
+            )}
+
+            <button
+              onClick={() => setHoursOpen(!hoursOpen)}
+              className="mt-3 flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left text-base font-bold hover:bg-white/10"
+            >
+              <span>Hours</span>
+              {hoursOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+            </button>
+            {hoursOpen && (
+              <div className="mt-2 space-y-2 pl-4 text-sm text-white/80">
+                <a href="#hours" className="block rounded-xl px-3 py-2 hover:bg-white/10">Store Hours</a>
+              </div>
+            )}
+          </div>
+        </aside>
+
+        <div className="flex-1 md:ml-[290px]">
+          <header className="sticky top-0 z-30 border-b border-red-950/10 bg-white/95 backdrop-blur">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+              <button className="rounded-xl border border-stone-200 p-2 md:hidden" onClick={() => setSidebarOpen(true)} aria-label="Open sidebar">
+                <Menu className="h-6 w-6" />
+              </button>
+              <div>
+                <div className="text-xl font-black uppercase text-stone-900 md:text-2xl">The Teriyaki Plate</div>
+                <div className="text-xs font-bold uppercase tracking-[0.18em] text-red-600 md:text-sm">Express Grilled Cuisine</div>
+              </div>
+            </div>
+          </header>
+
+          <main>
+            <section className="bg-[linear-gradient(135deg,#090909,#420707_55%,#161616)] px-4 py-12 text-white md:px-8 md:py-16">
+              <div className="mx-auto max-w-6xl">
+                <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-200">
+                  Wilmington, North Carolina
+                </div>
+                <h1 className="mt-5 text-4xl font-black uppercase leading-tight md:text-6xl">The Teriyaki Plate</h1>
+                <p className="mt-3 text-lg font-semibold uppercase tracking-[0.14em] text-red-300">Express Grilled Cuisine</p>
+
+                <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="mt-1 h-5 w-5 text-red-300" />
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-[0.18em] text-red-300">Address</div>
+                        <a
+                          href="https://www.google.com/maps/search/?api=1&query=1414+S+College+Rd+Wilmington+NC+28403"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-2 block text-lg font-semibold hover:text-red-200"
+                        >
+                          1414 S College Rd
+                        </a>
+                        <div className="text-white/80">Wilmington, NC 28403</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                    <div className="flex items-start gap-3">
+                      <Phone className="mt-1 h-5 w-5 text-red-300" />
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-[0.18em] text-red-300">Phone</div>
+                        <div className="mt-2 text-lg font-semibold">(910) 399-5592</div>
+                        <div className="text-white/80">Call ahead for pickup</div>
+                        <a
+                          href="tel:19103995592"
+                          className="mt-4 inline-block rounded-xl bg-red-600 px-5 py-3 font-bold text-white hover:bg-red-700"
+                        >
+                          Call Now
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="px-4 py-10 md:px-8">
+              <div className="mx-auto max-w-6xl">
+                <MenuSearch query={query} setQuery={setQuery} />
+              </div>
+            </section>
+
+            <section id="entrees" className="px-4 pb-10 md:px-8">
+              <div className="mx-auto max-w-6xl">
+                <MenuSection title="Entrees" items={filteredCombos} numbered={true} />
+                <div className="mt-4 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-stone-700">
+                  Combos are served with fried or white rice and vegetables. Substitute or add noodles for $1.29.
+                </div>
+              </div>
+            </section>
+
+            <section id="vegetarian" className="px-4 pb-10 md:px-8">
+              <div className="mx-auto max-w-6xl space-y-4">
+                <MenuSection title="Vegetarian Meals" items={filteredVegetarianMeals} />
+                <div className="rounded-[24px] border border-red-100 bg-white p-6 shadow-sm">
+                  <h3 className="text-2xl font-black uppercase text-stone-900">Vegetarian Add Ons</h3>
+                  <div className="mt-5 grid gap-3">
+                    {filteredVegetarianNotes.map((item) => (
+                      <div
+                        key={`veg-note-${item[0]}`}
+                        className="flex items-center justify-between gap-4 rounded-2xl border border-stone-100 bg-[#fffdfa] px-4 py-4"
+                      >
+                        <div className="font-semibold text-stone-900">{item[0]}</div>
+                        <div className="shrink-0 rounded-full bg-red-600 px-3 py-1 text-sm font-bold text-white">{item[1]}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="sides" className="px-4 pb-10 md:px-8">
+              <div className="mx-auto max-w-6xl">
+                <MenuSection title="Sides & Extras" items={filteredSides} />
+              </div>
+            </section>
+
+            <section id="beverages" className="px-4 pb-10 md:px-8">
+              <div className="mx-auto max-w-6xl">
+                <MenuSection title="Beverages" items={filteredBeverages} />
+              </div>
+            </section>
+
+            <section id="hours" className="px-4 pb-16 md:px-8">
+              <div className="mx-auto max-w-6xl rounded-[24px] border border-red-100 bg-white p-6 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-red-600" />
+                  <h2 className="text-2xl font-black uppercase text-stone-900">Hours</h2>
+                </div>
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  <div className="rounded-2xl border border-stone-100 bg-[#fffdfa] p-5">
+                    <div className="font-semibold text-stone-900">Sunday – Thursday</div>
+                    <div className="mt-2 text-stone-600">10:30 AM – 7:30 PM</div>
+                  </div>
+                  <div className="rounded-2xl border border-stone-100 bg-[#fffdfa] p-5">
+                    <div className="font-semibold text-stone-900">Friday – Saturday</div>
+                    <div className="mt-2 text-stone-600">10:30 AM – 8:30 PM</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <footer className="px-4 pb-8 pt-2 text-center text-sm text-stone-500 md:px-8">
+            © The Teriyaki Plate – Wilmington, NC
+          </footer>
+        </div>
+      </div>
+    </div>
+  );
+}
