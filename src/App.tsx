@@ -251,7 +251,7 @@ export default function App() {
 
                 <div className="mt-6 flex justify-center">
                   <img
-                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAADvKADAAQAAAABAAAA4AAAAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADgA7wDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWRlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4w+JfxD+I3w88Qa38Qfj14l1vw94S0m6WbVtZ1G8jtrS3t4kO2SSeQKhVYgAAAdBXrH7B37anxM+KX/BZL/gmX8Fv2bvDNhr+n3WgaP4g+Lmk6ta2FxAIjFawiaQbeTuYwyOuSTg4r+sv4l/8G7n/AAUo+GXw6+J3/BQz9pf9nvwJ+y54b8AjwppXhnRPE2v2bPDbssqa5uJEAuIRnPzFgM56V+Nv7Xf/BQ39vH9rP4ifFX9rP9rj4jeJPEHiTT9M0Hxfq15rGm6trE6mSS1trqVYxLI26NmCYIXH0yK/oqvXWMSx0Pa1oy92Mlyp2v1v16Xte9j8O8SYvB8O0fY31Uorpmu7Xta6u11e56B8CP24f+Crn/BKL4N6t+zN4p+HX7THxh8F+DvBOryeINM8TeJNQ0PRdd1S3lmjksbaGa4aGXcA4xJGO3YVqf8ABUn/AIJwf8FDv+CjfiHQdf8A2If2n/jj4g8E/ArwXqWj6f8AELX9N8V6vr2vX1xBPaWllNE8ZijmtXkhK7mYp8wPpk15f+zD/wV4/YW/4K1aD8dP2fP2gv8Agn/8Ur3w78ZPBn2ax8J6PZeHn0+LzhfWttcSzySW7M4IaMKBtCjpjiv58dP8A/gm7+39/wTz0T4p/8FGP2j/Fnhn4WfGjwvr0XhHxD4m8Ea3pHgvW3uYI3nv7q3u7iW5gkiZHBQOYsV4J44+8KmNxMPVwuDpyjUlNR0cr6uzq9+7/r8jx2O8mweHqYfF3VVaPuz21u31drWvqf1Vf8E3P8Agkj4P/4Jx/Ab4L/AHf2J/gp8M9Q8J+G/HyRvdw3Wj31jLpt9J8yxwLHMJACM4VgSMj0r4w/wCCwH/BUL9on9rD9iz4bfs5/C34efDP4ofFDxD4htvF9rrF1qusXl8JRNbzSP5cj4Maq3IPTFfFnwv/AOCln7cfwS+IXw4/bA/bf8c+EPiJ4g1DwxqumePvEni6K6g063jvJ5nt7GVYzJGixoqnYQfmx9P6M/4J5/wDBVP4R/wDBQ79jf9n39sD4LfsdWF38WfB3iHwp4Q1z4e6NrukaY6/2dNd2Evmxy3Nw6svmyMspGP8AWfDmbZFi+J8bk9Cq06VF3u4tXi013u+tvw7n7d4M8PMFQ4KjQw8YqSkm7J3VlfXrpufbpRRRX3h80FFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/Z"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADgA7wDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWRlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oACAEBAAA/APZqKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z"
                     alt="The Teriyaki Plate Logo"
                     className="w-full max-w-[900px] rounded-2xl border border-white/10 bg-white/5 p-2 shadow-2xl"
                   />
@@ -320,10 +320,7 @@ export default function App() {
 
             <section id="vegetarian" className="px-4 pb-10 md:px-8">
               <div className="mx-auto max-w-6xl space-y-4">
-                <MenuSection
-                  title="Vegetarian Meals"
-                  items={filteredVegetarianMeals}
-                />
+                <MenuSection title="Vegetarian Meals" items={filteredVegetarianMeals} />
                 <div className="rounded-[24px] border border-red-100 bg-white p-6 shadow-sm">
                   <h3 className="text-2xl font-black uppercase text-stone-900">
                     Vegetarian Add Ons
